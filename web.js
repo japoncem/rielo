@@ -1,14 +1,5 @@
-var express = require('express');
-var fs = require("fs");
-var app = express.createServer(express.logger());
-var filename = "index.html";
-var filedata = fs.readFileSync(filename).toString();
+var connect = require("connect");
 
-app.get('/', function(request, response) {
-  response.send(filedata);
-});
+var app = connect.createServer().use(connect.static(__dirname));
 
-var port = process.env.PORT || 8080;
-app.listen(port, function() {
-  console.log("Listening on " + port);
-});
+app.listen(8080);
